@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useCompare } from '../context/CompareContext'
 import { useAuth } from '../context/AuthContext'
+import CollegeDetail from '../pages/CollegeDetail'
 import api from '../utils/api'
 
 export default function CollegeCard({ college, savedIds = [], onSaveToggle }) {
@@ -37,7 +38,8 @@ export default function CollegeCard({ college, savedIds = [], onSaveToggle }) {
   }
 
   return (
-    <div className="card hover:shadow-md transition-shadow duration-200 overflow-hidden group">
+    <div onClick={() => navigate('/college')} className="card hover:shadow-md transition-shadow duration-200 overflow-hidden group">
+        <Link to={`/colleges/${college.id}`}>
       {/* College Image */}
       <div className="relative h-40 bg-slate-100 overflow-hidden">
         <img
@@ -56,11 +58,10 @@ export default function CollegeCard({ college, savedIds = [], onSaveToggle }) {
       </div>
 
       <div className="p-4">
-        <Link to={`/colleges/${college.id}`}>
           <h3 className="font-display font-semibold text-slate-900 text-sm leading-snug hover:text-brand-600 transition-colors line-clamp-2 mb-1">
             {college.name}
           </h3>
-        </Link>
+     
 
         <p className="text-slate-500 text-xs mb-3">📍 {college.location}</p>
 
@@ -91,6 +92,7 @@ export default function CollegeCard({ college, savedIds = [], onSaveToggle }) {
           {inCompare ? '✓ Added to Compare' : '+ Compare'}
         </button>
       </div>
+       </Link>
     </div>
   )
 }
