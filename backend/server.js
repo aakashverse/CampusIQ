@@ -11,7 +11,10 @@ const app = express();
 
 // Middleware
 app.use(cors({
-    origin: "https://campusiq-flax.vercel.app"
+  origin: [
+    "http://localhost:5173",
+    "https://campusiq-flax.vercel.app"
+  ]
 }));
 app.use(express.json());
 
