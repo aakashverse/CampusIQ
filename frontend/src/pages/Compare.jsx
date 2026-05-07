@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useCompare } from '../context/CompareContext'
 import api from '../utils/api'
 import CompareTable from '../components/CompareTable'
-import AIInsightBox from '../components/AIInsightBox'
+import AIInsightBox from '../components/AiInsightBox'
 
 export default function Compare() {
   const { compareList, removeFromCompare, clearCompare } = useCompare()
