@@ -58,7 +58,7 @@ export default function CollegeCard({ college, savedIds = [], onSaveToggle }) {
         </button>
       </div>
       <div className="p-4">
-        <Link to={`${import.meta.env.VITE_API_URL}/colleges/${college.id}`}>
+        <Link to={`/colleges/${college.id}`}>
           <h3 className="font-display font-semibold text-slate-900 text-sm leading-snug hover:text-brand-600 transition-colors line-clamp-2 mb-1">
             {college.name}
           </h3>

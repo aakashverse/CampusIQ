@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import api from '../utils/api'
 import { useCompare } from '../context/CompareContext'
 import { useAuth } from '../context/AuthContext'
+import { toast } from 'react-toastify'
 
 export default function CollegeDetail() {
   const { id } = useParams()
@@ -33,7 +34,10 @@ export default function CollegeDetail() {
   }, [id, user])
 
   const handleSaveToggle = async () => {
-    if (!user) { alert('Please login to save colleges'); return }
+    if (!user) { 
+     toast.error('Please login to save colleges'); 
+     return;
+    }
     try {
       await api.post(`${import.meta.env.VITE_API_URL}/saved/${id}`)
       setSaved((prev) => !prev)
