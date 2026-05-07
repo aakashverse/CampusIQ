@@ -16,12 +16,12 @@ export default function CollegeDetail() {
   useEffect(() => {
     const fetchDetail = async () => {
       try {
-        const res = await api.get(`${import.meta.env.VITE_API_URL}/colleges/${id}`)
+        const res = await api.get(`/colleges/${id}`)
         setCollege(res.data)
 
         // Check if saved
         if (user) {
-          const savedRes = await api.get(`${import.meta.env.VITE_API_URL}/saved/ids`)
+          const savedRes = await api.get(`/saved/ids`)
           setSaved(savedRes.data.includes(parseInt(id)))
         }
       } catch (err) {
@@ -39,7 +39,7 @@ export default function CollegeDetail() {
      return;
     }
     try {
-      await api.post(`${import.meta.env.VITE_API_URL}/saved/${id}`)
+      await api.post(`/saved/${id}`)
       setSaved((prev) => !prev)
     } catch (err) {
       console.error(err)

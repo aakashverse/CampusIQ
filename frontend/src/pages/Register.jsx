@@ -21,7 +21,7 @@ export default function Register() {
     }
     setLoading(true)
     try {
-      const res = await api.post(`${import.meta.env.VITE_API_URL}/auth/register`, form)
+      const res = await api.post(`/auth/register`, form)
       login(res.data.user, res.data.token)
       navigate('/')
     } catch (err) {

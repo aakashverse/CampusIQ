@@ -27,7 +27,7 @@ export default function Home() {
     setLoading(true)
     try {
       const params = { page, limit: 9, search: debouncedSearch, ...filters }
-      const res = await api.get(`${import.meta.env.VITE_API_URL}/colleges`, { params })
+      const res = await api.get(`/colleges`, { params })
       setColleges(res.data.colleges)
       setPagination(res.data.pagination)
     } catch (err) {
@@ -44,7 +44,7 @@ export default function Home() {
   // Fetch saved IDs if logged in (to show heart state on cards)
   useEffect(() => {
     if (user) {
-      api.get(`${import.meta.env.VITE_API_URL}/saved/ids`)
+      api.get(`/saved/ids`)
         .then((res) => setSavedIds(res.data))
         .catch(() => {})
     }

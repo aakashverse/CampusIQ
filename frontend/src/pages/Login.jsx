@@ -18,7 +18,7 @@ export default function Login() {
     setError('')
     setLoading(true)
     try {
-      const res = await api.post(`${import.meta.env.VITE_API_URL}/auth/login`, form)
+      const res = await api.post(`/auth/login`, form)
       login(res.data.user, res.data.token)
       navigate('/')
       toast.success("Log in succesful")
