@@ -31,7 +31,7 @@ export default function CollegeCard({ college, savedIds = [], onSaveToggle }) {
       return
     }
     try {
-      await api.post(`/saved/${college.id}`)
+      await api.post(`${import.meta.env.VITE_API_URL}/saved/${college.id}`)
       onSaveToggle?.(college.id)
     } catch (err) {
       console.error(err)
@@ -39,7 +39,7 @@ export default function CollegeCard({ college, savedIds = [], onSaveToggle }) {
   }
 
   return (
-    <div onClick={() => navigate('/college')} className="card hover:shadow-md transition-shadow duration-200 overflow-hidden group">
+    <div onClick={() => navigate(`${import.meta.env.VITE_API_URL}/college`)} className="card hover:shadow-md transition-shadow duration-200 overflow-hidden group">
       {/* College Image */}
       <div className="relative h-40 bg-slate-100 overflow-hidden">
         <img
@@ -58,7 +58,7 @@ export default function CollegeCard({ college, savedIds = [], onSaveToggle }) {
         </button>
       </div>
       <div className="p-4">
-        <Link to={`/colleges/${college.id}`}>
+        <Link to={`${import.meta.env.VITE_API_URL}/colleges/${college.id}`}>
           <h3 className="font-display font-semibold text-slate-900 text-sm leading-snug hover:text-brand-600 transition-colors line-clamp-2 mb-1">
             {college.name}
           </h3>

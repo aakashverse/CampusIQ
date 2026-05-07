@@ -15,12 +15,12 @@ export default function CollegeDetail() {
   useEffect(() => {
     const fetchDetail = async () => {
       try {
-        const res = await api.get(`/colleges/${id}`)
+        const res = await api.get(`${import.meta.env.VITE_API_URL}/colleges/${id}`)
         setCollege(res.data)
 
         // Check if saved
         if (user) {
-          const savedRes = await api.get('/saved/ids')
+          const savedRes = await api.get(`${import.meta.env.VITE_API_URL}/saved/ids`)
           setSaved(savedRes.data.includes(parseInt(id)))
         }
       } catch (err) {
@@ -35,7 +35,7 @@ export default function CollegeDetail() {
   const handleSaveToggle = async () => {
     if (!user) { alert('Please login to save colleges'); return }
     try {
-      await api.post(`/saved/${id}`)
+      await api.post(`${import.meta.env.VITE_API_URL}/saved/${id}`)
       setSaved((prev) => !prev)
     } catch (err) {
       console.error(err)

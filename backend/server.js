@@ -10,7 +10,9 @@ const compareRoutes = require("./routes/compare");
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+    origin: "https://campusiq-flax.vercel.app"
+}));
 app.use(express.json());
 
 // Routes

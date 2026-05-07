@@ -9,7 +9,7 @@ export default function Navbar() {
   const handleLogout = () => {
     logout()
     toast.success("Logged out!")
-    navigate('/')
+    navigate("/")
   }
 
   return (
