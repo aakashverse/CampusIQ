@@ -9,6 +9,7 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import Saved from './pages/Saved'
 import CompareBar from './components/CompareBar'
+import { ToastContainer, toast } from 'react-toastify';
 
 export default function App() {
   return (
@@ -32,6 +33,7 @@ export default function App() {
           </div>
         </CompareProvider>
       </AuthProvider>
+      <ToastContainer position="top-center"/>
     </BrowserRouter>
   )
 }

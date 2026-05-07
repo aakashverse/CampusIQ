@@ -23,7 +23,7 @@ export default function Compare() {
       setInsight(res.data.insight)
     } catch (err) {
       console.error(err)
-      alert('Comparison failed. Please try again.')
+      toast.error('Comparison failed. Please try again.')
     } finally {
       setLoading(false)
     }

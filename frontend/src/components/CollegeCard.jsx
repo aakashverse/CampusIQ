@@ -3,6 +3,7 @@ import { useCompare } from '../context/CompareContext'
 import { useAuth } from '../context/AuthContext'
 import CollegeDetail from '../pages/CollegeDetail'
 import api from '../utils/api'
+import { toast } from 'react-toastify'
 
 export default function CollegeCard({ college, savedIds = [], onSaveToggle }) {
   // ALL hooks must be called before any conditional return (React rules of hooks)
@@ -19,14 +20,14 @@ export default function CollegeCard({ college, savedIds = [], onSaveToggle }) {
     if (inCompare) {
       removeFromCompare(college.id)
     } else {
-      addToCompare(college)
+        addToCompare(college)
     }
   }
 
   const handleSaveToggle = async (e) => {
     e.preventDefault()
     if (!user) {
-      alert('Please login to save colleges')
+      toast.error('Please login to save colleges')
       return
     }
     try {
@@ -39,7 +40,6 @@ export default function CollegeCard({ college, savedIds = [], onSaveToggle }) {
 
   return (
     <div onClick={() => navigate('/college')} className="card hover:shadow-md transition-shadow duration-200 overflow-hidden group">
-        <Link to={`/colleges/${college.id}`}>
       {/* College Image */}
       <div className="relative h-40 bg-slate-100 overflow-hidden">
         <img
@@ -47,6 +47,7 @@ export default function CollegeCard({ college, savedIds = [], onSaveToggle }) {
           alt={college.name}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
         />
+        
         {/* Save button */}
         <button
           onClick={handleSaveToggle}
@@ -56,12 +57,12 @@ export default function CollegeCard({ college, savedIds = [], onSaveToggle }) {
           {isSaved ? '❤️' : '🤍'}
         </button>
       </div>
-
       <div className="p-4">
+        <Link to={`/colleges/${college.id}`}>
           <h3 className="font-display font-semibold text-slate-900 text-sm leading-snug hover:text-brand-600 transition-colors line-clamp-2 mb-1">
             {college.name}
           </h3>
-     
+        </Link>
 
         <p className="text-slate-500 text-xs mb-3">📍 {college.location}</p>
 
@@ -84,15 +85,14 @@ export default function CollegeCard({ college, savedIds = [], onSaveToggle }) {
         <button
           onClick={handleCompareToggle}
           className={`w-full text-xs py-1.5 rounded-lg border font-medium transition-colors ${
-            inCompare
+              inCompare
               ? 'bg-brand-50 border-brand-300 text-brand-700'
               : 'bg-white border-slate-200 text-slate-600 hover:border-brand-300 hover:text-brand-600'
-          }`}
-        >
+            }`}
+            >
           {inCompare ? '✓ Added to Compare' : '+ Compare'}
         </button>
       </div>
-       </Link>
     </div>
   )
 }

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import api from '../utils/api'
 import { useAuth } from '../context/AuthContext'
+import { toast } from 'react-toastify'
 
 export default function Login() {
   const { login } = useAuth()
@@ -20,6 +21,7 @@ export default function Login() {
       const res = await api.post('/auth/login', form)
       login(res.data.user, res.data.token)
       navigate('/')
+      toast.success("Log in succesful")
     } catch (err) {
       setError(err.response?.data?.error || 'Login failed')
     } finally {
