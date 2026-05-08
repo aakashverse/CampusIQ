@@ -8,12 +8,14 @@ export default function Login() {
   const { login } = useAuth()
   const navigate = useNavigate()
   const [form, setForm] = useState({ email: '', password: '' })
+  const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value })
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    setError('')
     setLoading(true)
     try {
       const res = await api.post(`/api/auth/login`, form)
@@ -21,8 +23,7 @@ export default function Login() {
       navigate('/')
       toast.success("Log in succesful")
     } catch (err) {
-      console.log('Login-error: ', err.message);
-      toast.error('Login failed')
+      setError(err.response?.data?.error || 'Login failed')
     } finally {
       setLoading(false)
     }
