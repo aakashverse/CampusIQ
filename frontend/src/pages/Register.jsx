@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import api from '../utils/api'
 import { useAuth } from '../context/AuthContext'
+import { toast } from 'react-toastify'
 
 export default function Register() {
   const { login } = useAuth()
@@ -25,6 +26,7 @@ export default function Register() {
     try {
       const res = await api.post(`/api/auth/register`, form);
       login(res.data.user, res.data.token);
+      toast.success("SignUp Successfull!");
       navigate('/');
     } catch (err) {
       setError(err.response?.data?.error || 'Registration failed');
