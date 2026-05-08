@@ -1,6 +1,6 @@
 # CampusIQ — College Discovery Platform
 
-A full-stack college discovery paltform built with React, Node.js, Express, and PostgreSQL.
+A full-stack college discovery paltform built with React, Node.js, Express, and PostgreSQL deployed on (vercel + render) [https://campusiq-flax.vercel.app].
 
 ## Features
 - College listing with search, filters, and pagination
