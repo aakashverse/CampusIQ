@@ -17,7 +17,6 @@ const register = async (req, res) => {
       return res.status(409).json({ error: "Email already registered" });
     }
 
-    // Hash password — never store plain text
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const result = await pool.query(

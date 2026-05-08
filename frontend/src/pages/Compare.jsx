@@ -16,7 +16,7 @@ export default function Compare() {
     if (compareList.length < 2) return
     setLoading(true)
     try {
-      const res = await api.post(`/compare`, {
+      const res = await api.post(`/api/compare`, {
         collegeIds: compareList.map((c) => c.id),
       })
       setResult(res.data.colleges)

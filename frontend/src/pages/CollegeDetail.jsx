@@ -16,12 +16,12 @@ export default function CollegeDetail() {
   useEffect(() => {
     const fetchDetail = async () => {
       try {
-        const res = await api.get(`/colleges/${id}`)
+        const res = await api.get(`/api/colleges/${id}`)
         setCollege(res.data)
 
         // Check if saved
         if (user) {
-          const savedRes = await api.get(`/saved/ids`)
+          const savedRes = await api.get(`/api/saved/ids`)
           setSaved(savedRes.data.includes(parseInt(id)))
         }
       } catch (err) {
@@ -39,7 +39,7 @@ export default function CollegeDetail() {
      return;
     }
     try {
-      await api.post(`/saved/${id}`)
+      await api.post(`/api/saved/${id}`)
       setSaved((prev) => !prev)
     } catch (err) {
       console.error(err)

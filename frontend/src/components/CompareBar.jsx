@@ -35,7 +35,7 @@ export default function CompareBar() {
             Clear
           </button>
           <button
-            onClick={() => navigate(`${import.meta.env.VITE_API_URL}/compare`)}
+            onClick={() => navigate("/compare")}
             disabled={compareList.length < 2}
             className="btn-primary text-xs py-1.5 disabled:opacity-50 disabled:cursor-not-allowed"
           >

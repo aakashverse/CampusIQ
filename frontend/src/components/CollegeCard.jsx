@@ -31,7 +31,7 @@ export default function CollegeCard({ college, savedIds = [], onSaveToggle }) {
       return
     }
     try {
-      await api.post(`/saved/${college.id}`)
+      await api.post(`/api/saved/${college.id}`)
       onSaveToggle?.(college.id)
     } catch (err) {
       console.error(err)
@@ -58,7 +58,7 @@ export default function CollegeCard({ college, savedIds = [], onSaveToggle }) {
         </button>
       </div>
       <div className="p-4">
-        <Link to={`/colleges/${college.id}`}>
+        <Link to={`${API}/colleges/${college.id}`}>
           <h3 className="font-display font-semibold text-slate-900 text-sm leading-snug hover:text-brand-600 transition-colors line-clamp-2 mb-1">
             {college.name}
           </h3>

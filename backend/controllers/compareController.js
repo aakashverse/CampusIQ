@@ -2,7 +2,6 @@ const pool = require("../config/db");
 const { generateComparisonInsight } = require("../utils/llm");
 
 // POST /api/compare
-// Body: { collegeIds: [1, 2, 3] }
 const compareColleges = async (req, res) => {
   try {
     const { collegeIds } = req.body;
@@ -12,7 +11,6 @@ const compareColleges = async (req, res) => {
     }
 
     // Fetch college data from DB
-    // Using ANY($1) is the pg way to do WHERE IN with an array
     const result = await pool.query(
       `SELECT id, name, location, fees, rating, placement_percentage, established_year
        FROM colleges

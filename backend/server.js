@@ -13,7 +13,7 @@ const app = express();
 app.use(cors({
   origin: [
     "http://localhost:5173",
-    "https://campusiq-x73i.onrender.com"
+    "https://campusiq-flax.vercel.app"
   ]
 }));
 app.use(express.json());

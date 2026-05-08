@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import api from '../utils/api'
 import { useAuth } from '../context/AuthContext'
 import CollegeCard from '../components/CollegeCard'
+const API = import.meta.env.VITE_API_URL;
 
 export default function Saved() {
   const { user } = useAuth()
@@ -12,21 +13,21 @@ export default function Saved() {
 
   useEffect(() => {
     if (!user) {
-      navigate('/login')
-      return
+      navigate('/login');
+      return;
     }
     const fetchSaved = async () => {
       try {
-        const res = await api.get(`/saved`)
-        setColleges(res.data)
+        const res = await api.get(`/api/saved`);
+        setColleges(res.data);
       } catch (err) {
-        console.error(err)
+        console.error("college-save error: ", err);
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
     }
-    fetchSaved()
-  }, [user, navigate])
+    fetchSaved();
+  }, [user, navigate]);
 
   // When user unsaves from this page, remove from local list immediately
   const handleSaveToggle = (collegeId) => {

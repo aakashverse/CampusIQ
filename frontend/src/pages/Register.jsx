@@ -2,32 +2,32 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import api from '../utils/api'
 import { useAuth } from '../context/AuthContext'
+import { toast } from 'react-toastify';
 
 export default function Register() {
   const { login } = useAuth()
   const navigate = useNavigate()
   const [form, setForm] = useState({ name: '', email: '', password: '' })
-  const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value })
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    setError('')
+    e.preventDefault();
     if (form.password.length < 6) {
-      setError('Password must be at least 6 characters')
+      toast.error('Password must be at least 6 characters');
       return
     }
     setLoading(true)
     try {
-      const res = await api.post(`/auth/register`, form)
-      login(res.data.user, res.data.token)
-      navigate('/')
+      const res = await api.post(`/api/auth/register`, form)
+      login(res.data.user, res.data.token);
+      navigate('/');
     } catch (err) {
-      setError(err.response?.data?.error || 'Registration failed')
+      console.log("SignUp error: ", err.message);
+      toast.error('Registration failed');
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
   }
 
